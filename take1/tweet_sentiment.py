@@ -30,13 +30,13 @@ def cleanTweet(tweet):
     ecleanedtweet = emoji_UCS2.sub("", cleanedtweet)
     #cleanedtweet = emoji_UCS4.sub(" ", cleanedtweet)
     #cleanedtweet = re.sub(r"http\S+", " ", cleanedtweet)
-    return ecleanedtweet.lower().translate(string.maketrans("",""), punctMinusHash)
+    return ecleanedtweet.lower()#.translate(string.maketrans("",""), punctMinusHash)
 
 def readTweets(fp):
     for tweet in fp.readlines()[1:]:
         jsonTweetObject = json.loads(tweet)
         try:
-            tweetText = jsonTweetObject["text"].encode('utf-8')
+            tweetText = jsonTweetObject["text"].encode('ascii', 'ignore') # as against 'utf-8'
             print cleanTweet(tweetText)
         except KeyError:
             pass
