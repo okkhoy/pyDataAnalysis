@@ -58,13 +58,12 @@ def twitterreq(url, method, parameters):
   return response
 
 def fetchsamples():
-  url = "https://stream.twitter.com/1/statuses/sample.json"
+  url = "https://stream.twitter.com/1/statuses/sample.json?language=en"
   parameters = []
   response = twitterreq(url, "GET", parameters)
   for line in response:
     print line.strip()
 
 if __name__ == '__main__':
-  print "**** In Main ****"
   fetchsamples()
   
